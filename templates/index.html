@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include 'head.html' %}
+    </head>
+    <body>
+       {% include 'pages/' + request.args.get('page') + '.html' %}
+    </body>
+    <footer></footer>
+</html>
