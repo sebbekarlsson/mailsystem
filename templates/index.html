@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {% include 'head.html' %}
+        {% block head %}
+            <link rel="stylesheet" type="text/css" href="static/styles/style.css?41431412">
+            <title>{% block title %}Mailsystem{% endblock %}</title>
+        {% endblock %}
     </head>
     <body>
-       {% include 'pages/' + request.args.get('page') + '.html' %}
+        {% block body %}
+        {% endblock %}
     </body>
-    <footer></footer>
+    <footer>{% block footer %}{% endblock %}</footer>
 </html>
