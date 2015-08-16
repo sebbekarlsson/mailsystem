@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+{% block title %}Register!{% endblock %}
+{% block body %}
+    {{ super() }}
+    <div class="box box-middle shadow">
+        <form method="post" action="register">
+            <div class="text">
+                <span class="input-wrap">
+                    <input class="intext" type="text" name="mail_id" id="mail_id" placeholder="Mail ID" onkeydown="noSpaces(this.event)">
+                </span>
+                <span class="input-wrap">
+                    <input class="intext" type="password" name="mail_pw" placeholder="Mail Password">
+                </span>
+                <span class="input-wrap">
+                    <input class="intext" type="password" name="mail_pw_confirm" placeholder="Confirm Password">
+                </span>
+                <span class="input-wrap">
+                    <input type="submit" name="register" value="Register">
+                </span>
+                {{ error }}
+            </div>
+        </form>
+    </div>
+    <script>
+        var noSpaces = function(e){
+            e = e || window.event; 
+            var charCode = e.charCode || e.keyCode, 
+            character = String.fromCharCode(charCode);
+            if(character == " "){
+                e.preventDefault();
+                input_text = document.querySelector('#mail_id').value;
+                document.querySelector('#mail_id').value = input_text.replace(" ", "");
+            }
+        }
+    </script>
+{% endblock %}

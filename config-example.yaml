@@ -1,0 +1,8 @@
+#This file should be named 'config.yaml'
+
+
+database:
+    host: 'localhost' #host for database
+    user: 'root' #username for database
+    pw: 'mypassword' #password for database
+    dbname: 'mailsystem' #databasename
