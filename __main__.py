@@ -5,14 +5,17 @@ import MySQLdb as mdb
 from user import User
 from db import DB
 import yaml
+import os
+from register import page_register
 
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+app.register_blueprint(page_register)
 
 """ Let's read the config """
-with open('config.yaml', 'r') as f:
+with open(os.path.join(os.path.dirname(__file__), 'config.yaml'), 'r') as f:
     doc = yaml.load(f)
 
 """ Let's create the database object """
@@ -33,17 +36,6 @@ def login():
     error = ''
     return render_template('/pages/login.html', error=error)
 
-@app.route('/register', methods=["POST", "GET"])
-def register():
-    global db
-
-    mail_id = ''
-    if request.method == 'POST':
-        if request.form['mail_id'] != None and request.form['mail_pw'] != None:
-            user = User(db, request.form['mail_id'], request.form['mail_pw'])
-            user.save()
-
-    return render_template('/pages/register.html', error=mail_id)
 
 def setup_database(db):
     db.query("CREATE TABLE IF NOT EXISTS users(user_id INTEGER PRIMARY KEY AUTO_INCREMENT, mail_id varchar(64), mail_pw varchar(64))")
